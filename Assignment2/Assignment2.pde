@@ -1,26 +1,16 @@
 PGraphics pg;
-PFont font;
+LetterGraphics letterGraphics;
+TileGrid tileGrid;
 
 void setup() {
-  font = createFont("RobotoMono-Regular.ttf", 600);
   size(800, 800, P2D);
-  pg = createGraphics(800, 800, P2D);
+  letterGraphics = new LetterGraphics();
+  pg = letterGraphics.pg;
+  tileGrid = new TileGrid(8, 8, pg);
 }
 
 void draw() {
   background(0);
-  
-  pg.beginDraw();
-  pg.background(0);
-  pg.fill(255);
-  pg.textFont(font);
-  pg.textSize(800);
-  pg.pushMatrix();
-  pg.translate(width/2, height/2-215);
-  pg.textAlign(CENTER, CENTER);
-  pg.text("a", 0, 0);
-  pg.popMatrix();
-  pg.endDraw();
-  
-  image(pg,0,0);
+  letterGraphics.drawLetter();
+  tileGrid.display();
 }
