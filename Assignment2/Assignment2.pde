@@ -4,7 +4,7 @@ TileGrid tileGrid;
 
 void setup() {
   size(800, 800, P2D);
-  letterGraphics = new LetterGraphics("gbc");  
+  letterGraphics = new LetterGraphics("gbc24");  
   pg = letterGraphics.pg;
   tileGrid = new TileGrid(8, 8, pg);
 }

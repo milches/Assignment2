@@ -16,7 +16,7 @@ class LetterGraphics {
     pg.textFont(font);
 
     
-    float textSizeValue = findOptimalTextSize(pg.width * 0.8);
+    float textSizeValue = findOptimalTextSize(pg.width * 0.8, pg.height * 0.8);
     pg.textSize(textSizeValue);
 
     pg.textAlign(CENTER, CENTER);
@@ -27,13 +27,21 @@ class LetterGraphics {
     pg.endDraw();
   }
 
-  float findOptimalTextSize(float desiredWidth) {
-    
+  float findOptimalTextSize(float desiredWidth, float desiredHeight) {
     float ts = 10;  
     pg.textSize(ts);
-    while (pg.textWidth(textToDraw) < desiredWidth && ts < 1000) {
+    float textWidth = pg.textWidth(textToDraw);
+    float textAscent = pg.textAscent();
+    float textDescent = pg.textDescent();
+    float textHeight = textAscent + textDescent;
+
+    while ((textWidth < desiredWidth) && (textHeight < desiredHeight) && (ts < 1000)) {
       ts += 5;
       pg.textSize(ts);
+      textWidth = pg.textWidth(textToDraw);
+      textAscent = pg.textAscent();
+      textDescent = pg.textDescent();
+      textHeight = textAscent + textDescent;
     }
     return ts;
   }
